@@ -1,0 +1,18 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal-{{timei.ken_name}}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">データの削除</h5>
+            </div>
+            <div class="modal-body">
+                <p>削除すると元に戻すことはできません。よろしいでしょうか？</p>
+            </div>
+            <div class="modal-footer">
+            　　<form method="POST" action="{% url 'number:timei_delete' timei.ken_name %}">{% csrf_token %}
+                　　<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">とじる</button>
+                　　<button type="submit" class="btn btn-danger">削除</button>
+            　　</form>
+　　　　　　</div>
+        </div>
+    </div>
+</div>

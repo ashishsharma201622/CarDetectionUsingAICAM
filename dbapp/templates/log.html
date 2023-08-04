@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dbapp/style.css' %}">
+
+<div class="flex-box">
+  <div class="flex-h2">
+    <h2>Log Search </h2>
+  </div>
+  <div class="flex-serch">
+    <form action="" method="GET">
+      {% csrf_token %}
+
+    </form>
+  </div>
+</div>
+
+
+<div class="listview">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Time</th>
+        <th>Result</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for log_list in log_list %}
+      <tr>
+        <td>{{ log_list.number }}</td>
+        <td>{{ log_list.time }}</td>
+        <td>{{ log_list.result }}</td>
+        <td>{{ log_list.image }}</td>
+
+      {% endfor %}
+
+      </tr>
+
+    </tbody>
+
+
+  </table>
+</div>
+{% endblock %}
+

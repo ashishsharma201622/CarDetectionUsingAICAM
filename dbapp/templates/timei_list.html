@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dbapp/style.css' %}">
+<div class="flex-box">
+  <h2>地名　一覧</h2>
+  <form action="" method="GET">
+    {% csrf_token %}
+    {{ serchform}}
+    <input type="submit" class='btn btn-primary' value="検索">
+  </form>
+</div>
+<div class="listview">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>地名</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for timei in timei_list %}
+      <tr>
+        <td>{{ timei.ken_name }}</td>
+        <td><a class="d btn btn-primary btn-sm"  href="{% url 'number:timei_edit' timei.ken_name %}" >編集</a></td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{timei.ken_name}}">削除</button>
+          {% include 'timei-delete.html' %}
+        </td>  
+      </tr> 
+      
+      {% comment %} href="{% url 'number:delete' number.pk %}"  {% endcomment %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  
+<div>
+  <br>
+  <br>
+  <h2>地名追加</h2>
+ <form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{ form.ken_name }}
+    <input type="submit" class='btn btn-primary' value="新規登録">
+    <br>
+  </form> 
+</div> 
+{% endblock %}

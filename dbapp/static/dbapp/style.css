@@ -1,0 +1,42 @@
+.listview{
+    width: 80%;
+    height: 600px;
+    overflow-y:scroll;
+}
+
+thead{
+    position: sticky;
+    top: 0;
+    background-color: lightgray;
+}
+
+th::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 1px solid #333333;
+}
+
+#id_class_number, #id_assign_number,  #id_hira{
+    width: 155px;
+}
+
+#id_kanji{
+    width: 60px;
+}
+
+.flex-box{
+    background-color: white;    
+    padding:  10px;            
+    display: flex;              
+    align-items:center;  
+    justify-content:space-between;
+    width: 80%;
+}
+
+.message{
+    width: 80%;
+}

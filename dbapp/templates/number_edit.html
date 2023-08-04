@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content_block %}
+<h2>ナンバー更新</h2>
+<form action="" method="POST" autocomplete="off">
+  {% csrf_token %}
+  
+  {{ form.kanji }}
+  <datalist id='item'>
+    {% for item in item %}
+    <option value="{{item.ken_name}}"></option>
+    {% endfor %}
+  </datalist>
+  {{ form.class_number }}
+  {{ form.hira }}
+  {{ form.assign_number }}
+  <button class="btn btn-primary btn-sm" type="submit" name="button">保存</button>
+  <a class="d btn btn-secondary btn-sm" href="{% url 'number:main' %}">閉じる</a>
+</form>
+
+{% endblock %}

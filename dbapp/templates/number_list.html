@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content_block %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dbapp/style.css' %}">
+
+<div class="flex-box">
+  <div class="flex-h2">
+    <h2>登録ナンバー　一覧</h2>
+  </div>
+  <div class="flex-serch">
+    <form action="" method="GET" aligt>
+      {% csrf_token %}
+      {{ serchform}}
+      <input type="submit" class='btn btn-primary' value="検索">
+    </form>
+  </div>
+</div>
+
+<div class="listview">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ナンバー</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for number in number_list %}
+      <tr>
+        <td>{{ number.number }}</td>
+        <td><a class="d btn btn-primary btn-sm"  href="{% url 'number:edit' number.pk %}" >編集</a></td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-{{number.number}}">削除</button>
+          {% include 'number-delete.html' %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <br>
+  <br>
+  <h2>ナンバー登録</h2>
+  <form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{ form.kanji }}
+    <datalist id='item'>
+      {% for item in item %}
+      <option value="{{item.ken_name}}"></option>
+      {% endfor %}
+    </datalist>
+    {{ form.class_number }}
+    {{ form.hira }}
+    {{ form.assign_number }}
+    <input type="submit" class='btn btn-primary' value="新規登録">
+  {% if validflag == True %}
+  {{ form.hira.errors }}
+  {% endif %}
+    <br>
+  </form>
+</div>
+{% endblock %}

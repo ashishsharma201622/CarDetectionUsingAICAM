@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content_block %}
+<h2>地名更新</h2>
+<form action="" method="POST" autocomplete="off">
+  {% csrf_token %}
+  {{ form.ken_name }}
+  <button class="btn btn-primary btn-sm" type="submit" name="button">保存</button>
+  <a class="d btn btn-secondary btn-sm" href="{% url 'number:timei' %}">閉じる</a>
+</form>
+
+{% endblock %}
